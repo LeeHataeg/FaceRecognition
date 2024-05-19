@@ -3,7 +3,7 @@
 ![header](https://capsule-render.vercel.app/api?type=wave&color=auto&height=300&section=header&text=연예인얼굴유사도%20)
 
  
-<img src="https://img.shields.io/badge/Unity-000000?style=flat-square&logo=unity&logoColor=white"/><img src="https://img.shields.io/badge/C sharp-512BD4?style=flat-square&logo=csharp&logoColor=white"/>
+<img src="https://img.shields.io/badge/Python-ivory?style=flat-square&logo=python&logoColor=3776AB"/>
 
 </div>
 
