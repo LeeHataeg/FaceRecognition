@@ -1,6 +1,6 @@
 <div align="center">
  
-![header](https://capsule-render.vercel.app/api?type=wave&color=auto&height=300&section=header&text=용사마을스토리%20)
+![header](https://capsule-render.vercel.app/api?type=wave&color=auto&height=300&section=header&text=연예인 유사도 분석%20)
  
 <img src="https://img.shields.io/badge/Unity-000000?style=flat-square&logo=unity&logoColor=white"/><img src="https://img.shields.io/badge/C sharp-512BD4?style=flat-square&logo=csharp&logoColor=white"/>
 
