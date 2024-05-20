@@ -7,6 +7,7 @@ Created on Mon May 20 14:17:37 2024
 
 import cv2
 import os
+import numpy as np
 
 def preprocess_image(image_path, output_path, size=(256, 256)):
     # OpenCV의 얼굴 검출기인 Haar Cascade 사용
@@ -29,13 +30,17 @@ def preprocess_image(image_path, output_path, size=(256, 256)):
         face = gray_image[y:y+h, x:x+w]
         # 256x256 크기로 조정
         resized_face = cv2.resize(face, size)
+        # 픽셀값을 0~1 사이로 조정
+        normalized_face = resized_face / 255.0
+        # 다시 0~255로 변환하여 저장 (이미지 파일 저장을 위해)
+        output_image = (normalized_face * 255).astype(np.uint8)
         # 전처리된 이미지를 파일로 저장
-        cv2.imwrite(output_path, resized_face)
+        cv2.imwrite(output_path, output_image)
         break  # 첫 번째 얼굴만 사용 (필요에 따라 조정 가능)
 
 # 연예인 이미지들이 저장된 폴더와 전처리된 이미지를 저장할 폴더 경로 설정
-input_folder = r'C:\Users\gkxor\Documents\GitHub\FaceRecognition\WebCroling\Code\Data\M\배우 이병헌'
-output_folder = 'Output/'
+input_folder = 'path/to/celebrity/images'
+output_folder = 'path/to/preprocessed/images'
 
 # 출력 폴더가 존재하지 않으면 생성
 if not os.path.exists(output_folder):
