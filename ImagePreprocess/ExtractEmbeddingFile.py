@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat May 25 18:13:06 2024
-
-@author: gkxor
-"""
-
 import os
 import json
 import cv2
@@ -34,28 +27,25 @@ def extract_face_embeddings(image_path, embedder):
     return embeddings[0].tolist()
 
 # 디렉토리 내 이미지 파일에서 얼굴 임베딩 추출 및 저장
-def save_face_embeddings_from_directory(directory, output_file):
-    embeddings_dict = {}
-    
-    # 기존 파일의 내용 불러오기
-    if os.path.exists(output_file):
-        with open(output_file, 'r', encoding='utf-8') as f:
-            embeddings_dict = json.load(f)
-    
+def save_face_embeddings_from_directory(directory, output_directory):
     for root, dirs, files in os.walk(directory):
+        group_name = os.path.basename(root)  # 디렉토리 이름을 그룹 이름으로 사용
+        group_embeddings = {}
+        
         for filename in files:
             if filename.lower().endswith((".jpg", ".png")):
                 image_path = os.path.join(root, filename)
                 embeddings = extract_face_embeddings(image_path, embedder)
                 if embeddings is not None:
                     relative_path = os.path.relpath(image_path, directory)
-                    embeddings_dict[relative_path] = embeddings
-    
-    # JSON 파일로 저장
-    with open(output_file, 'w', encoding='utf-8') as f:
-        json.dump(embeddings_dict, f, indent=4, ensure_ascii=False)
+                    group_embeddings[relative_path] = embeddings
+        
+        # JSON 파일로 저장
+        output_file = os.path.join(output_directory, f"{group_name}.json")
+        with open(output_file, 'w', encoding='utf-8') as f:
+            json.dump(group_embeddings, f, indent=4, ensure_ascii=False)
 
 # 사용 예시
 input_directory = "C:/Users/gkxor/Documents/GitHub/FaceRecognition/ImagePreprocess/temp/"
-output_file = "C:/Users/gkxor/Documents/GitHub/FaceRecognition/ImagePreprocess/test/celeb.json"
-save_face_embeddings_from_directory(input_directory, output_file)
+output_directory = "C:/Users/gkxor/Documents/GitHub/FaceRecognition/ImagePreprocess/test/"
+save_face_embeddings_from_directory(input_directory, output_directory)
