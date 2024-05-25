@@ -67,7 +67,7 @@ def analyze_similarity(image_path, grouped_embeddings):
 
 # 그룹화된 임베딩 정보 로드
 grouped_embeddings = {}
-output_directory = "C:/Users/gkxor/Documents/GitHub/FaceRecognition/ImagePreprocess/test/"
+output_directory = "C:/Users/gkxor/Documents/GitHub/FaceRecognition/ImagePreprocess/files/"
 for root, _, files in os.walk(output_directory):
     for file in files:
         if file.endswith(".json"):

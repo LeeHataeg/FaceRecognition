@@ -46,6 +46,6 @@ def save_face_embeddings_from_directory(directory, output_directory):
             json.dump(group_embeddings, f, indent=4, ensure_ascii=False)
 
 # 사용 예시
-input_directory = "C:/Users/gkxor/Documents/GitHub/FaceRecognition/ImagePreprocess/temp/"
-output_directory = "C:/Users/gkxor/Documents/GitHub/FaceRecognition/ImagePreprocess/test/"
+input_directory = "C:/Users/gkxor/Documents/GitHub/FaceRecognition/ImagePreprocess/images/"
+output_directory = "C:/Users/gkxor/Documents/GitHub/FaceRecognition/ImagePreprocess/files/"
 save_face_embeddings_from_directory(input_directory, output_directory)
