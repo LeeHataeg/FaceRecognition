@@ -1,5 +1,6 @@
 import os
 import shutil
+from collections import Counter
 
 import face_recognition
 import matplotlib.pyplot as plt
@@ -111,16 +112,20 @@ def find_similar_person(embedding_dict, image_path):
 
     min_distance = float("inf")
     most_similar_person = None
-    # silmilar_dict = {}
+    dicts = {}
 
     for person, embeddings in embedding_dict.items():
+        person_distance = float("inf")
         for embedding in embeddings:
             distance = cosine(image_embedding, embedding)
-            # silmilar_dict[person] = distance
             if distance < min_distance:
                 min_distance = distance
                 most_similar_person = person
-
+            if distance < person_distance:
+                person_distance = distance
+        dicts[person] = person_distance
+    sorted_items = sorted(dicts.items(), key=lambda x: x[1])[:5]
+    print(sorted_items)
     return most_similar_person
 
 
@@ -128,6 +133,7 @@ def start_test(train_path, test_path):
     correct = 0
     incorrect = 0
     embedding = load_embeddings(train_path, all_folders)
+
     for folder_name in os.listdir(test_path):
         folder_path = os.path.join(test_path, folder_name)
         if os.path.isdir(folder_path):
