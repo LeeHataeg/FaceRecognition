@@ -8,9 +8,9 @@ import numpy as np
 from scipy.spatial.distance import cosine
 from sklearn.model_selection import train_test_split
 
-datasets_path = os.path.join(os.getcwd(), "dataset")
-train_path = os.path.join(os.getcwd(), "train_dataset")
-test_path = os.path.join(os.getcwd(), "test_dataset")
+datasets_path = os.path.join(os.getcwd(), "dataset/female")
+train_path = os.path.join(os.getcwd(), "train_dataset/female")
+test_path = os.path.join(os.getcwd(), "test_dataset/female")
 custom_test_path = os.path.join(os.getcwd(), "test")
 
 all_folders = os.listdir(train_path)
@@ -176,7 +176,8 @@ def plot_results(correct, incorrect):
     plt.show()
 
 
-start_test(train_path, test_path)
+# start_test(train_path, test_path)
 
 # model = load_embeddings(train_path, all_folders)
-# find_similar_person(model, "C:/Users/1201q/python/test/1.jpg")
+# find_similar_person(model, "C:/Users/gkxor/Desktop/rs/test.jpg")
+# split_files(datasets_path, train_path, test_path)
